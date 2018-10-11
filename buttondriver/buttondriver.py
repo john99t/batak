@@ -32,11 +32,11 @@ class ButtonPanel:
         read the value of an individual button 1 - 16
         returns 0 = open, 1 = closed
         """
-        return 0
+        return self.buttons.read_pin(id)
 
     def button_write(self, id, value):
         """
         sets the illumination value of an individual button 1 - 16
         value will be 0 = unlit, 1 = illuminated
         """
-        pass
+        self.lights.write_pin(id, value)
