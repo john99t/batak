@@ -10,7 +10,8 @@ Made available under GNU GENERAL PUBLIC LICENSE
 # By DenisFromHR (Denis Pleic)
 # 2015-02-10, ver 0.1
 
-Requires python 3 smbus to be installed with: sudo apt-get install python3-smbus
+Requires python 3 smbus to be installed with:
+    sudo apt-get install python3-smbus
 
 
 """
@@ -143,7 +144,7 @@ class LCD:
 
     # put string function
 
-    def lcd_display_string(self, string, line):
+    def lcd_display_string(self, string, line=1):
         if line == 1:
             self.lcd_write(0x80)
         if line == 2:
@@ -169,6 +170,7 @@ class LCD:
             self.lcd_device.write_cmd(LCD_NOBACKLIGHT)
 
     # add custom characters (0 - 7)
+    # Utility to calculate font is https://omerk.github.io/lcdchargen/
     def lcd_load_custom_chars(self, fontdata):
         self.lcd_write(0x40)
         for char in fontdata:
@@ -176,7 +178,7 @@ class LCD:
                 self.lcd_write_char(line)
 
     # define precise positioning (addition from the forum)
-    def lcd_display_string_pos(self, string, line, pos):
+    def lcd_display_string_pos(self, string, line=1, pos=0):
         if line == 1:
             pos_new = pos
         elif line == 2:

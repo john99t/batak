@@ -16,15 +16,15 @@ class ButtonPanel:
     # initializes button state
     def __init__(self):
         self.buttons = IOPi(BUS1_ADDRESS)
-        self.buttons.set_port_direction(0, 0xFF) # 1 = input, 0 = output
-        self.buttons.set_port_direction(1, 0xFF) # 1 = input, 0 = output
-        self.buttons.invert_port(0, 0xFF)        # make button pressed = 1
-        self.buttons.invert_port(1, 0xFF)        # make button pressed = 1
-        self.buttons.set_port_pullups(0, 0xFF)   # pullup enabled
-        self.buttons.set_port_pullups(1, 0xFF)   # pullup enabled
+        self.buttons.set_port_direction(0, 0xFF)  # 1 = input, 0 = output
+        self.buttons.set_port_direction(1, 0xFF)  # 1 = input, 0 = output
+        self.buttons.invert_port(0, 0xFF)         # make button pressed = 1
+        self.buttons.invert_port(1, 0xFF)         # make button pressed = 1
+        self.buttons.set_port_pullups(0, 0xFF)    # pullup enabled
+        self.buttons.set_port_pullups(1, 0xFF)    # pullup enabled
         self.lights = IOPi(BUS2_ADDRESS)
-        self.lights.set_port_direction(0, 0x00)  # 1 = input, 0 = output
-        self.lights.set_port_direction(1, 0x00)  # 1 = input, 0 = output
+        self.lights.set_port_direction(0, 0x00)   # 1 = input, 0 = output
+        self.lights.set_port_direction(1, 0x00)   # 1 = input, 0 = output
         self.lights.write_port(0, 0xFF)
         self.lights.write_port(1, 0xFF)
 

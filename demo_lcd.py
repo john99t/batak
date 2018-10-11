@@ -131,6 +131,25 @@ mylcd.lcd_display_string_pos(chr(3), 2, 9)
 mylcd.lcd_display_string_pos(chr(4), 2, 10)
 mylcd.lcd_display_string_pos(chr(5), 2, 11)
 
+
+def scrollText(scrollBlurb, row=1):
+    if len(scrollBlurb) > 16:
+        padding = " " * 16
+        oldText = scrollBlurb
+        scrollBlurb = padding + scrollBlurb + " "
+        for i in range(0, len(scrollBlurb)):
+            mylcd.lcd_display_string(scrollBlurb[i:(i+16)], row)
+            sleep(0.35)
+        mylcd.lcd_display_string(oldText[:16], row)
+    else:
+        mylcd.lcd_display_string(scrollBlurb, row)
+
+
+mylcd.lcd_clear()
+mylcd.lcd_display_string("Score: 182", 2)
+scrollText("I wandered lonely as a cloud")
+
+
 sleep(2)
 mylcd.lcd_clear()
 sleep(1)

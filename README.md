@@ -21,3 +21,8 @@ Not necessary to connect IOPi GND to Relay GND
 
 Address 0x27
 
+
+```
+pycodestyle --exclude=LICENSE *
+```
+
