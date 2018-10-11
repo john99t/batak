@@ -15,7 +15,7 @@ import smbus
 from time import *
 
 
-class i2c_device:
+class I2CDevice:
     def __init__(self, addr, port=1):
         self.addr = addr
         self.bus = smbus.SMBus(port)
@@ -98,10 +98,10 @@ Rw = 0b00000010  # Read/Write bit
 Rs = 0b00000001  # Register select bit
 
 
-class lcd:
-    # initializes objects and lcd
+class LCD:
+    # initializes objects and LCD
     def __init__(self):
-        self.lcd_device = i2c_device(ADDRESS)
+        self.lcd_device = I2CDevice(ADDRESS)
 
         self.lcd_write(0x03)
         self.lcd_write(0x03)

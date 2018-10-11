@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import lcddriver
-#import lcddriver_emulator as lcddriver
+# import lcddriver_emulator as lcddriver
 
 from time import *
 
-mylcd = lcddriver.lcd()
+mylcd = lcddriver.LCD()
 # test 2
 mylcd.lcd_display_string("RPi I2C test", 1)
 mylcd.lcd_display_string(" Custom chars", 2)
