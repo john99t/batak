@@ -10,6 +10,9 @@ Made available under GNU GENERAL PUBLIC LICENSE
 # By DenisFromHR (Denis Pleic)
 # 2015-02-10, ver 0.1
 
+Requires python 3 smbus to be installed with: sudo apt-get install python3-smbus
+
+
 """
 import smbus
 from time import *
