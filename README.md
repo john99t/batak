@@ -23,6 +23,6 @@ Address 0x27
 
 
 ```
-pycodestyle --exclude=LICENSE *
+pycodestyle --exclude=LICENSE,README.md *
 ```
 
