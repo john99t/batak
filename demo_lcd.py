@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from drivers import lcddriver
-# from drivers lcddriver_emulator as lcddriver
-
+# from drivers import lcddriver_emulator as lcddriver
 from time import *
 
 mylcd = lcddriver.LCD()
