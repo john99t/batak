@@ -1,6 +1,7 @@
 # batak
 Batak-like reaction tester using hardware controlled by a Raspberry Pi
 
+Written in Python 3
 
 # IOPi Input/Output Card uses I2C
 
