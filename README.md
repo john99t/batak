@@ -24,6 +24,7 @@ Address 0x27
 
 
 ```
+sudo pip3 install pycodestyle
 pycodestyle --exclude=LICENSE,README.md *
 ```
 

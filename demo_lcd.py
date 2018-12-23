@@ -6,6 +6,7 @@ from time import *
 
 mylcd = lcddriver.LCD()
 # test 2
+# mylcd.lcd_scroll_string("RPi I2C test - very long text", 1)
 mylcd.lcd_display_string("RPi I2C test", 1)
 mylcd.lcd_display_string(" Custom chars", 2)
 
@@ -84,39 +85,39 @@ block = chr(255)  # block character, built-in
 mylcd.lcd_display_string_pos(block * 2, 1, 4)
 
 #
-pauza = 0.2  # define duration of sleep(x)
+pause = 0.2  # define duration of sleep(x)
 #
 # now draw cust. chars starting from col. 7 (pos. 6)
 
 pos = 6
 mylcd.lcd_display_string_pos(chr(1), 1, 6)
-sleep(pauza)
+sleep(pause)
 
 mylcd.lcd_display_string_pos(chr(2), 1, pos)
-sleep(pauza)
+sleep(pause)
 
 mylcd.lcd_display_string_pos(chr(3), 1, pos)
-sleep(pauza)
+sleep(pause)
 
 mylcd.lcd_display_string_pos(chr(4), 1, pos)
-sleep(pauza)
+sleep(pause)
 
 mylcd.lcd_display_string_pos(block, 1, pos)
-sleep(pauza)
+sleep(pause)
 
 # and another one, same as above, 1 char-space to the right
 pos = pos + 1  # increase column by one
 
 mylcd.lcd_display_string_pos(chr(1), 1, pos)
-sleep(pauza)
+sleep(pause)
 mylcd.lcd_display_string_pos(chr(2), 1, pos)
-sleep(pauza)
+sleep(pause)
 mylcd.lcd_display_string_pos(chr(3), 1, pos)
-sleep(pauza)
+sleep(pause)
 mylcd.lcd_display_string_pos(chr(4), 1, pos)
-sleep(pauza)
+sleep(pause)
 mylcd.lcd_display_string_pos(block, 1, pos)
-sleep(pauza)
+sleep(pause)
 
 
 #
@@ -152,4 +153,4 @@ scrollText("I wandered lonely as a cloud")
 sleep(2)
 mylcd.lcd_clear()
 sleep(1)
-mylcd.backlight(0)
+mylcd.lcd_backlight(0)

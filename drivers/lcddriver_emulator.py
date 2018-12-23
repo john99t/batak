@@ -116,7 +116,7 @@ class lcd:
         pass
 
     # define backlight on/off (lcd.backlight(1); off= lcd.backlight(0)
-    def backlight(self, state):  # for state, 1 = on, 0 = off
+    def lcd_backlight(self, state):  # for state, 1 = on, 0 = off
         print("backlight", state)
 
     # add custom characters (0 - 7)

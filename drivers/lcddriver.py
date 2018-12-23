@@ -24,30 +24,30 @@ class I2CDevice:
         self.addr = addr
         self.bus = smbus.SMBus(port)
 
-# Write a single command
+    # Write a single command
     def write_cmd(self, cmd):
         self.bus.write_byte(self.addr, cmd)
         sleep(0.0001)
 
-# Write a command and argument
+    # Write a command and argument
     def write_cmd_arg(self, cmd, data):
         self.bus.write_byte_data(self.addr, cmd, data)
         sleep(0.0001)
 
-# Write a block of data
+    # Write a block of data
     def write_block_data(self, cmd, data):
         self.bus.write_block_data(self.addr, cmd, data)
         sleep(0.0001)
 
-# Read a single byte
+    # Read a single byte
     def read(self):
         return self.bus.read_byte(self.addr)
 
-# Read
+    # Read a data byte
     def read_data(self, cmd):
         return self.bus.read_byte_data(self.addr, cmd)
 
-# Read a block of data
+    # Read a block of data
     def read_block_data(self, cmd):
         return self.bus.read_block_data(self.addr, cmd)
 
@@ -104,6 +104,7 @@ Rs = 0b00000001  # Register select bit
 
 class LCD:
     # initializes objects and LCD
+    # This is a 2 line, 16 character display
     def __init__(self):
         self.lcd_device = I2CDevice(ADDRESS)
 
@@ -120,13 +121,13 @@ class LCD:
         sleep(0.2)
 
     # clocks EN to latch command
-
     def lcd_strobe(self, data):
         self.lcd_device.write_cmd(data | En | LCD_BACKLIGHT)
         sleep(.0005)
         self.lcd_device.write_cmd(((data & ~En) | LCD_BACKLIGHT))
         sleep(.0001)
 
+    # write four bits of command
     def lcd_write_four_bits(self, data):
         self.lcd_device.write_cmd(data | LCD_BACKLIGHT)
         self.lcd_strobe(data)
@@ -142,8 +143,7 @@ class LCD:
         self.lcd_write_four_bits(mode | (charvalue & 0xF0))
         self.lcd_write_four_bits(mode | ((charvalue << 4) & 0xF0))
 
-    # put string function
-
+    # display string on specified row
     def lcd_display_string(self, string, line=1):
         if line == 1:
             self.lcd_write(0x80)
@@ -162,8 +162,8 @@ class LCD:
         self.lcd_write(LCD_CLEARDISPLAY)
         self.lcd_write(LCD_RETURNHOME)
 
-    # define backlight on/off (lcd.backlight(1); off= lcd.backlight(0)
-    def backlight(self, state):  # for state, 1 = on, 0 = off
+    # define backlight on/off (lcd.lcd_backlight(1); off= lcd.lcd_backlight(0)
+    def lcd_backlight(self, state):  # for state, 1 = on, 0 = off
         if state == 1:
             self.lcd_device.write_cmd(LCD_BACKLIGHT)
         elif state == 0:
@@ -178,7 +178,7 @@ class LCD:
                 self.lcd_write_char(line)
 
     # define precise positioning (addition from the forum)
-    def lcd_display_string_pos(self, string, line=1, pos=0):
+    def lcd_display_string_pos(self, text, line=1, pos=0):
         if line == 1:
             pos_new = pos
         elif line == 2:
@@ -190,5 +190,18 @@ class LCD:
 
         self.lcd_write(0x80 + pos_new)
 
-        for char in string:
+        for char in text:
             self.lcd_write(ord(char), Rs)
+
+    # scroll text across line - this method blocks
+    def lcd_scroll_string(self, text, line=1, delay=0.25):
+        if len(text) > 16:
+            padding = " " * 16
+            old_text = text
+            text = padding + text + " "
+            for i in range(0, len(text)):
+                self.lcd_display_string(text[i:(i+16)], line)
+                sleep(delay)
+            self.lcd_display_string(old_text[:16], line)
+        else:
+            self.lcd_display_string(text, line)

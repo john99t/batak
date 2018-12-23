@@ -8,10 +8,10 @@ button_panel = buttondriver.ButtonPanel()
 # Test all lights
 print("All lights ON!")
 button_panel.button_set_all(1)
-sleep(2)  
+sleep(2)
 print("All lights OFF!")
 button_panel.button_set_all(0)
-sleep(2)  
+sleep(2)
 
 # Rotate light round available buttons
 for i in range(10):
