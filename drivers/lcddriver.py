@@ -16,7 +16,7 @@ Requires python 3 smbus to be installed with:
 
 """
 import smbus
-from time import *
+from time import sleep
 
 
 class I2CDevice:

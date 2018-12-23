@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from drivers import lcddriver
 # from drivers import lcddriver_emulator as lcddriver
-from time import *
+from time import sleep
 
 mylcd = lcddriver.LCD()
 # test 2
@@ -49,6 +49,19 @@ mylcd.lcd_write_char(4)
 mylcd.lcd_write_char(5)
 sleep(2)
 
+
+fontdata3 = [
+    # Char 0
+    [0b10101, 0b01010, 0b10101, 0b01010, 0b10101, 0b01010, 0b10101, 0b01010]
+]
+mylcd.lcd_clear()
+mylcd.lcd_load_custom_chars(fontdata3)
+mylcd.lcd_write(0x80)
+mylcd.lcd_write_char(0)
+mylcd.lcd_write_char(0)
+mylcd.lcd_write_char(0)
+mylcd.lcd_write_char(0)
+sleep(2)
 mylcd.lcd_clear()
 
 mylcd.lcd_display_string_pos("Testing", 1, 1)  # row 1, column 1
@@ -71,13 +84,16 @@ fontdata2 = [
     [0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e],
     # Char 5 - left start
     [0x0, 0x1, 0x3, 0x7, 0xf, 0x1f, 0x1f, 0x1f],
-    # Char 6 -
-    # [ ],
+    # Char 6 - right arrow
+    [0b10000, 0b11000, 0b11100, 0b11110, 0b11110, 0b11100, 0b11000, 0b10000]
 ]
 
 # Load logo chars from the second set
 mylcd.lcd_load_custom_chars(fontdata2)
 
+mylcd.lcd_write(0x80)
+mylcd.lcd_write_char(0)
+mylcd.lcd_write_char(6)
 block = chr(255)  # block character, built-in
 
 # display two blocks in columns 5 and 6 (i.e. AFTER pos. 4) in row 1
@@ -131,6 +147,7 @@ mylcd.lcd_display_string_pos(chr(3), 2, 9)
 mylcd.lcd_display_string_pos(chr(4), 2, 10)
 mylcd.lcd_display_string_pos(chr(5), 2, 11)
 
+sleep(2)
 
 def scrollText(scrollBlurb, row=1):
     if len(scrollBlurb) > 16:
